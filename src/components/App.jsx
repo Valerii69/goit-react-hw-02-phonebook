@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from 'nanoid';
-import { Section, Title } from './App.styled';
+import { Section, Title, Container } from './App.styled';
 
 import Form from './Form';
 import ContactsList from './ContactsList';
 import Filter from './Filter';
 
 export class App extends Component {
+  // початковий стан
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -17,20 +18,21 @@ export class App extends Component {
     ],
     filter: '',
   };
-
+  // створення нового контакта
   addNewContact = data => {
     const { contacts } = this.state;
-    const newContact = {
-      id: nanoid(),
-      ...data,
-    };
+    const newContact = { id: nanoid(), ...data };
+    // console.log(newContact);
+    console.log({ contacts });
+
     contacts.some(({ name }) => name === data.name)
-      ? Notify.warning(`${data.name} is already in contacts`)
+      ? Notify.failure(`${data.name} is already in contacts`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
         }));
+    Notify.info(`${data.name} is added to contacts`);
   };
-
+  //видалення контакта
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
@@ -54,18 +56,21 @@ export class App extends Component {
     const visibleContacts = this.getVisibleContacts();
     return (
       <>
-        <Section>
+        <Container>
           <Title>Phonebook</Title>
-          <Form addNewContact={this.addNewContact} />
-        </Section>
-        <Section>
+          <Section>
+            <Form addNewContact={this.addNewContact} />
+          </Section>
+
           <Title>Contacts</Title>
-          <Filter value={filter} onChange={this.changeFilter} />
-          <ContactsList
-            contacts={visibleContacts}
-            deleteContact={this.deleteContact}
-          />
-        </Section>
+          <Section>
+            <Filter value={filter} onChange={this.changeFilter} />
+            <ContactsList
+              contacts={visibleContacts}
+              deleteContact={this.deleteContact}
+            />
+          </Section>
+        </Container>
       </>
     );
   }

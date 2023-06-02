@@ -1,24 +1,33 @@
 import styled from 'styled-components';
+import { colors } from '../utils/vars';
 
 export const Button = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin: 0.5em 1em;
+  border: ${colors.border};
+  color: ${colors.background};
+  box-shadow: ${colors.boxShadow};
+  /* margin: 0.5em 1em; */
   padding: 0.25em 1em;
   cursor: pointer;
 `;
 export const ContactName = styled.p`
-  color: #160b0f;
   font-size: 16px;
   font-weight: 500;
+  color: ${colors.background};
 `;
 export const ContactNumber = styled.span`
   margin-left: 10px;
+  color: red;
 `;
 export const ContactItem = styled.li`
   display: flex;
   align-items: center;
+  margin-top: 8px;
   justify-content: space-between;
+  font-style: ${colors.fonts};
+
+  /* border: ${colors.border};
+  border-radius: 3px;
+  background-color: ${colors.backgroundColor}; */
 `;
