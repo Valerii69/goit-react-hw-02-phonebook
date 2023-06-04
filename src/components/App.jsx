@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from 'nanoid';
 import { Section, Title, Container } from './App.styled';
 
@@ -25,12 +25,12 @@ export class App extends Component {
     // console.log(newContact);
     console.log({ contacts });
 
-    contacts.some(({ name }) => name === data.name)
-      ? Notify.failure(`${data.name} is already in contacts`)
+    contacts.some(({ name, id }) => name === data.name || id === data.id)
+      ? alert(`${data.name} is already in contacts`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
-        }));
-    Notify.info(`${data.name} is added to contacts`);
+        })); //;
+    // Notify.info(`${data.name} is added to contacts`);
   };
   //видалення контакта
   deleteContact = id => {

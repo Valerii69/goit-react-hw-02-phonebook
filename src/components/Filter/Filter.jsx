@@ -9,6 +9,7 @@ const Filter = ({ value, onChange }) => {
       <Input
         type="text"
         value={value}
+        autoComplete="on"
         onChange={onChange}
         placeholder="Enter name"
       />

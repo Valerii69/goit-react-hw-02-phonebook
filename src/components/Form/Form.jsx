@@ -6,13 +6,13 @@ class Form extends Component {
     name: '',
     number: '',
   };
-  handleChange = ({ target: { name, value } }) => {
+  handleImputChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
     });
   };
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = event => {
+    event.preventDefault();
     const { addNewContact } = this.props;
     addNewContact({ ...this.state });
     this.setState({ name: '', number: '' });
@@ -20,12 +20,12 @@ class Form extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <FormContainer onSubmit={this.handleSubmit} autoComplete="off">
+      <FormContainer onSubmit={this.handleSubmit} autoComplete="on">
         <div>
           <Label>
             Name
             <Input
-              onChange={this.handleChange}
+              onChange={this.handleImputChange}
               type="text"
               name="name"
               value={name}
@@ -38,10 +38,11 @@ class Form extends Component {
           <Label>
             Number
             <Input
-              onChange={this.handleChange}
+              onChange={this.handleImputChange}
               type="tel"
               name="number"
               value={number}
+              // autoComplete="off"
               placeholder="Enter number 000-00-00"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
