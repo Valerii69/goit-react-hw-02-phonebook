@@ -30,7 +30,7 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const FormContainer = styled.form`
+export const Container = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;

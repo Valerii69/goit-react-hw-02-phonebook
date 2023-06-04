@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import { Label, Input, Button, FormContainer } from './Form.styled';
+import { Label, Input, Button, Container } from './Form.styled';
 
 class Form extends Component {
   state = {
     name: '',
     number: '',
   };
-  handleImputChange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value,
-    });
+  //перезапис state ввденних значень imput
+  handleImputChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
   };
+  //обробник button
   handleSubmit = event => {
     event.preventDefault();
     const { addNewContact } = this.props;
+    //додавання нового контакта
     addNewContact({ ...this.state });
-    this.setState({ name: '', number: '' });
+    this.reset();
   };
+  //очистка state
+  reset = () => this.setState({ name: '', number: '' });
+
   render() {
     const { name, number } = this.state;
+
     return (
-      <FormContainer onSubmit={this.handleSubmit} autoComplete="on">
+      <Container onSubmit={this.handleSubmit} autoComplete="on">
         <div>
           <Label>
             Name
@@ -51,7 +57,7 @@ class Form extends Component {
           </Label>
         </div>
         <Button disabled={!name || !number}>Add new contact</Button>
-      </FormContainer>
+      </Container>
     );
   }
 }
