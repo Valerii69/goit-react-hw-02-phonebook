@@ -21,17 +21,19 @@ export class App extends Component {
   // створення нового контакта
   addNewContact = data => {
     const { contacts } = this.state;
+
+    if (
+      contacts.some(
+        ({ name }) => name.toLocaleLowerCase() === data.name.toLocaleLowerCase()
+      )
+    )
+      return Notify.info(`${data.name} is already in contacts`);
+    else
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+
     const newContact = { id: nanoid(), ...data };
-
-    // console.log({ ...newContact });
-    // console.log({ ...contacts });
-
-    contacts.some(({ name, id }) => name === data.name || id === data.id)
-      ? Notify.info(`${data.name} is already in contacts`)
-      : this.setState(prevState => ({
-          contacts: [...prevState.contacts, newContact],
-        }));
-    // (`${data.name} is added to contacts`);
   };
   //видалення контакта
   deleteContact = id => {

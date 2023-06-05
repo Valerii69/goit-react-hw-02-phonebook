@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { colors } from './utils/vars';
+// import { colors } from '../styles/vars';
 
 export const Title = styled.h2`
-  color: ${colors.colorText};
+  color: ${({ theme }) => theme.colorText};
   font-size: 30px;
   padding: 0;
 `;

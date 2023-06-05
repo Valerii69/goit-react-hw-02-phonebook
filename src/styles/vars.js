@@ -9,8 +9,9 @@ export const colors = {
   colorTextContacts: `#292929`,
   secondColor: `#ccffff`,
   textSecond: `#ffffff`,
-  fonts: `font-family: 'Verdana';
- font-weight: 400;
- font-size: 14px;
- font-style: bold;`,
+  fonts: `
+      font-family: 'Verdana';
+      font-weight: 400;
+      font-size: 14px;
+      font-style: bold;`,
 };

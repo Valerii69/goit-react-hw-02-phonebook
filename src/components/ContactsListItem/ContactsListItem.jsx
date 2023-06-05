@@ -10,8 +10,7 @@ const ContactsListItem = ({ id, name, number, deleteContact }) => {
   return (
     <ContactItem key={id}>
       <ContactName>
-        {name[0].toUpperCase() + name.substring(1)} :
-        <ContactNumber>{number}</ContactNumber>
+        {name} :<ContactNumber>{number}</ContactNumber>
       </ContactName>
       <Button onClick={() => deleteContact(id)}>Delete</Button>
     </ContactItem>
