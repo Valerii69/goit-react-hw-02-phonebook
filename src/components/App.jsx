@@ -21,7 +21,6 @@ export class App extends Component {
   // створення нового контакта
   addNewContact = data => {
     const { contacts } = this.state;
-
     if (
       contacts.some(
         ({ name }) => name.toLocaleLowerCase() === data.name.toLocaleLowerCase()
@@ -49,6 +48,7 @@ export class App extends Component {
   getVisibleContacts = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
+
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)
     );
